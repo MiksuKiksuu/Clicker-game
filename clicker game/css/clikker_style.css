@@ -1,0 +1,123 @@
+    /*klikkerin tyyli*/
+#kliker{
+    width: 25%;
+    height: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px
+    /*border: none;
+    padding: 20px;
+    position: relative;
+
+}
+
+#kliker:active {
+
+    width: 8%;
+    height: 8%;
+    padding: 50px;
+*/
+
+
+}
+
+/*klikker ryhmän tyyli*/
+.test{
+    width: 100%;
+    height: 100%;
+    margin: 3px;
+    padding: 20px;
+
+}
+
+/*Nappien perustuuli*/
+#purut {
+    position: relative;
+    background-color: rgb(85, 9, 9);
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 5px;
+    width: 250px;
+    margin: 5px;
+}
+#purut:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+/*killikerin kuvan tyyli*/
+#clikker-image{
+    border-bottom: 6px solid rgb(0, 0, 0);
+    background-color: rgba(70, 68, 68, 0.363);
+    display: block;
+    margin: 2px;
+    width: 40%;
+    height: 40%;
+}
+#clikker-image:hover {
+    box-shadow: 0 0 2px 1px rgba(121, 5, 5, 0.5);
+}
+
+/*skini kaupan tyyli*/
+.image-shop{
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+    border-top: 2px solid rgb(0, 0, 0);
+    background-color: rgba(70, 68, 68, 0.363);
+    margin: 2px;
+    width: 300px;
+    float: right;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+
+/*skini kaupan napin tyyli*/
+.image-shop #purut{
+    float: right;
+    width: 100px;
+    bottom: 90px;
+}
+
+/*klikkerin tekstin tyyli*/
+#clicks{
+    text-align: center;
+    font-size: 50px;
+}
+#clicks-text{
+    text-align: center;
+    font-size: 50px;
+}
+
+/*kaupan tyyli*/
+.shop{
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+    border-top: 2px solid rgb(0, 0, 0);
+    background-color: rgba(70, 68, 68, 0.363);
+    margin: 5px;
+    width: 300px;
+    float: left;
+    position: absolute;
+    top: 150px;
+    left: 16px;
+    font-size: 18px;
+}
+
+.shop h1{
+    margin: 5PX;
+}
+
+#shop-button{
+    position: relative;
+    background-color: rgb(85, 9, 9);
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 5px;
+    width: 250px;
+    margin: 5px;
+}
