@@ -6,7 +6,7 @@ $obj = json_decode($_POST["x"], false);
 
 $id = (isset($_SESSION['id'])) ? $_SESSION['id'] : 0;
 
-$sql = "SELECT clicks, kerroin, kahvi_2, kahvi_3, ps, kahvi, kahviplus, timerPS FROM user_items WHERE id = $id;";
+$sql = "SELECT clicks, kerroin, kahvi_2, kahvi_3, kahvi_4, ps, kahvi, kahviplus, timerPS FROM user_items WHERE id = $id;";
 
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);

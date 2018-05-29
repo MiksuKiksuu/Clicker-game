@@ -9,7 +9,7 @@ var timerId;
 // var kahvi_2 = false;
 // var kahvi_3 = false;
 // var kahvi_4 = false;
-var kahvi_1MIN = true;
+var kahvi_1 = true;
 var kahvi_2MIN = 800;
 var kahvi_3MIN = 600;
 var kahvi_4MIN = 100;
@@ -73,7 +73,7 @@ function tulosta(){
     kahviplus_output.innerHTML = JsonObj.kahviplus;
     kahvi_output.innerHTML = JsonObj.kahvi;
     timerPS_output.innerHTML = JsonObj.timerPS;
-
+    save_json_to_db();
     
 }
 
@@ -92,7 +92,7 @@ function kuva(){
 }
 */
 function kahviPS() {
-    if(JsonObj.ps == true){
+    if(JsonObj.ps == 1){
         JsonObj.clicks =  parseInt(JsonObj.clicks) + 1;
         tulosta(); 
     }
@@ -101,8 +101,7 @@ function kahviPS() {
 function aloita(){
     if(JsonObj.clicks > JsonObj.timerPS){
         JsonObj.clicks =  parseInt(JsonObj.clicks) - parseInt(JsonObj.timerPS);
-        JsonObj.ps = true;
-        JsonObj.ps = true;
+        JsonObj.ps = 1;
         timerId = setInterval(kahviPS, 1000);
         JsonObj.timerPS = parseInt(JsonObj.timerPS) + 50;
     }
@@ -114,20 +113,20 @@ function aloita(){
 
 //clicker image shop
 function kahvi1(){
-    if(JsonObj.kahvi_1 == true){
+    if(kahvi_1 == true){
         document.getElementById('kliker').src='image/kahvi_1.png';
     }
 }
 
 function kahvi3(){
-    if(JsonObj.kahvi_3 == true){
+    if(JsonObj.kahvi_3 == 1){
         document.getElementById('kliker').src='image/kahvi_3.png';
         //JsonObj.kahvi_3 = true;
     }
 }
 
 function kahvi2(){
-    if(JsonObj.kahvi_2 == true){
+    if(JsonObj.kahvi_2 == 1){
         document.getElementById('kliker').src='image/kahvi_2.png';
         //JsonObj.kahvi_2 = true;
 
@@ -135,30 +134,12 @@ function kahvi2(){
 }
 
 function kahvi4(){
-    if(JsonObj.kahvi_4 == true){
+    if(JsonObj.kahvi_4 == 1){
         document.getElementById('kliker').src='image/kahvi_5.png';
         //JsonObj.kahvi_4 = true;
 
 
     }
-}
-
-
-function kahvi__3(){
-    if(JsonObj.clicks > kahvi_3MIN)
-    {
-        if (JsonObj.kahvi_3 == false){
-        JsonObj.clicks = JsonObj.clicks - kahvi_3MIN;
-        }
-        if(kahvi_3 - kahvi_3MIN){
-            JsonObj.kahvi_3 = true;
-        }
-    }
-    else
-    if(JsonObj.kahvi_3 == true){
-        kahvi3();
-    }
-    tulosta();
 }
 
 
@@ -179,18 +160,36 @@ function kahvi__1(){
     tulosta();
 }
 
-function kahvi__2(){
-    if(JsonObj.clicks > kahvi_2MIN)
+function kahvi__3(){
+    if(JsonObj.clicks > kahvi_3MIN)
     {
-        if (JsonObj.kahvi_2 == false){
-            JsonObj.clicks = JsonObj.clicks - kahvi_2MIN;
+        if (JsonObj.kahvi_3 == 0){
+        JsonObj.clicks = JsonObj.clicks - kahvi_3MIN;
         }
-        if(JsonObj.kahvi_2 - kahvi_2MIN){
-            JsonObj.kahvi_2 = true;
+        if(JsonObj.kahvi_3 - kahvi_3MIN){
+            JsonObj.kahvi_3 = 1;
         }
     }
     else
-    if(JsonObj.kahvi_2 == true){
+    if(JsonObj.kahvi_3 == 1){
+        kahvi3();
+    }
+    tulosta();
+}
+
+
+function kahvi__2(){
+    if(JsonObj.clicks > kahvi_2MIN)
+    {
+        if (JsonObj.kahvi_2 == 0){
+            JsonObj.clicks = JsonObj.clicks - kahvi_2MIN;
+        }
+        if(JsonObj.kahvi_2 - kahvi_2MIN){
+            JsonObj.kahvi_2 = 1;
+        }
+    }
+    else
+    if(JsonObj.kahvi_2 == 1){
         kahvi2();
     }
     tulosta();
@@ -199,15 +198,15 @@ function kahvi__2(){
 function kahvi__4(){
     if(JsonObj.clicks > kahvi_4MIN)
     {
-        if (JsonObj.kahvi_4 == false){
+        if (JsonObj.kahvi_4 == 0){
             JsonObj.clicks = JsonObj.clicks - kahvi_4MIN;
         }
         if(JsonObj.kahvi_4 - kahvi_4MIN){
-            JsonObj.kahvi_4 = true;
+            JsonObj.kahvi_4 = 1;
         }
     }
     else
-    if(JsonObj.kahvi_4 == true){
+    if(JsonObj.kahvi_4 == 1){
         kahvi4();
     }
             tulosta();
@@ -235,13 +234,22 @@ function get_stuff(){
             var kahviplus = document.querySelector('#kahviplus_output');
             var kahvit_e = document.querySelector('#kahvi_output');
             var timerPS = document.querySelector('#timerPS_output');
-
+            var kahvit = document.querySelector('#clicks_output');
+            var kahvi_2 = document.querySelector('#kahvi_2');
+            var kahvi_3 = document.querySelector('#kahvi_3');
+            var kahvi_4 = document.querySelector('#kahvi_4');
+            var ps = document.querySelector('#ps');
 
             kahvit.innerHTML = JsonObj.clicks;
             kerroin.innerHTML = JsonObj.kerroin;
             kahviplus.innerHTML = JsonObj.kahviplus;
             kahvit_e.innerHTML = JsonObj.kahvi;
             timerPS.innerHTML = JsonObj.timerPS;
+            kahvi_2.innerHTML = JsonObj.kahvi_2;
+            kahvi_3.innerHTML = JsonObj.kahvi_3;
+            kahvi_4.innerHTML = JsonObj.kahvi_4;
+            ps.innerHTML = JsonObj.ps;
+
             
             // document.getElementById("viestit").innerHTML = myObj;
             // tulosta();
@@ -263,7 +271,7 @@ function save_json_to_db(){
         if (this.readyState == 4 && this.status == 200) {
             // myObj = JSON.parse(this.responseText);
             // console.log(myObj);
-            document.getElementById("demo").innerHTML = this.responseText;
+            // document.getElementById("demo").innerHTML = this.responseText;
             
         }
     };

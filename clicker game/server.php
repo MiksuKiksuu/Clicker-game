@@ -5,7 +5,7 @@ $username = "";
 $email    = "";
 $errors = array(); 
 
-$db = mysqli_connect('localhost', 'root', '', 'ClikkerUser');
+$db = mysqli_connect('paja.esedu.fi', 'miklas.maczulskij', 'miklasQwerty123!', 'miklas.maczulskij');
 
 if (isset($_POST['reg_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -41,11 +41,11 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);
 
-  	$query = "INSERT INTO user_items (username, email, password, clicks, kerroin, kahviplus, kahvi, timerPS, kahvi_2, kahvi_3, kahvi_4 ) 
-  			  VALUES('$username', '$email', '$password', 0, 1, 5, 20, 100, false, false, false, false)";
+  	$query = "INSERT INTO user_items (username, email, password, clicks, kerroin, kahviplus, kahvi, timerPS, kahvi_2, kahvi_3, kahvi_4, ps ) 
+  			  VALUES('$username', '$email', '$password', 0, 1, 5, 20, 100, 0, 0, 0, 0)";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
-  	header('location: index.php');
+  	header('location: login.php');
   }
 }
 
