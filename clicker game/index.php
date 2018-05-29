@@ -12,7 +12,6 @@
           
   }
 
-  
 ?>
 <!DOCTYPE html>
 <html lang="fi"
@@ -24,7 +23,7 @@
     <meta charset="utf-8"/>
     <title></title>
 </head>
-        <body>
+        <body onload="get_stuff();">
         <?php include('errors.php'); ?>
                 
                 <div class="login_system_text">
@@ -40,7 +39,7 @@
                         <?php endif ?>
 
                         <?php  if (isset($_SESSION['username'])) : ?>
-                                <p>Tervetuloa <strong><?php echo $_SESSION['username']; ?></strong></p>
+                                <p>Tervetuloa <strong><?php echo $_SESSION['username'] . " " . $_SESSION['id']; ?></strong></p>
                                 <p> <a href="index.php?logout='1'" style="color: red;">Kirjaudu ulos</a> </p>
                         <?php endif ?>
                 </div>            
@@ -71,13 +70,10 @@
                         <button id="shop-button" onclick="aloita()"><p>timerPS: <a id="timerPS_output"></a>€</p></button>
                 </div>
 
-                <p id="demo"></p>
-                <p id="viestit"></p>
+
                 <script type="text/javascript" src="js/clicker.js"></script>     
 
 
-                <p >Purut: <a id="kerroin"> </a> kpl</p>
-                <p>Kahvisi: <a id="clicks">0</a></p>
 
         </body>
 </html>

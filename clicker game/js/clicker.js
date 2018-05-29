@@ -24,18 +24,18 @@ var kahvi_4MIN = 100;
 // output_clicks.innerHTML = JsonObj.clicks;
 
 
-var JsonObj = {
-        "kahvi_2": false,
-        "kahvi_3": false,
-        "kahvi_4": false,
-        "ps": false,
-        "clicks": 0,
-        "kerroin": 1,
-        "kahviplus": 5,
-        "kahvi": 20,
-        "timerPS": 100
+var JsonObj;
+//         "kahvi_2": false,
+//         "kahvi_3": false,
+//         "kahvi_4": false,
+//         "ps": false,
+//         "clicks": 0,
+//         "kerroin": 1,
+//         "kahviplus": 5,
+//         "kahvi": 20,
+//         "timerPS": 100
       
-  }
+//   }
 
   var clicks_output = document.getElementById("clicks_output");
   var kerroin_output = document.getElementById("kerroin_output");
@@ -47,16 +47,16 @@ var JsonObj = {
 
 //Klikkerin funktio
 function klikkaus() {
-    JsonObj.clicks = JsonObj.clicks + JsonObj.kerroin;
+    JsonObj.clicks = parseInt(JsonObj.clicks) + parseInt(JsonObj.kerroin);
     tulosta();
 }
 
 //
 function purut() {
     if(JsonObj.clicks > JsonObj.kahvi){
-        JsonObj.clicks = JsonObj.clicks - JsonObj.kahvi;
-        JsonObj.kerroin =  JsonObj.kerroin + 1;
-        JsonObj.kahvi = JsonObj.kahvi + JsonObj.kahviplus;
+        JsonObj.clicks = parseInt(JsonObj.clicks) - parseInt(JsonObj.kahvi);
+        JsonObj.kerroin =  parseInt(JsonObj.kerroin) + 1;
+        JsonObj.kahvi = parseInt(JsonObj.kahvi) + parseInt(JsonObj.kahviplus);
 
         tulosta();
     }
@@ -73,6 +73,8 @@ function tulosta(){
     kahviplus_output.innerHTML = JsonObj.kahviplus;
     kahvi_output.innerHTML = JsonObj.kahvi;
     timerPS_output.innerHTML = JsonObj.timerPS;
+
+    
 }
 
 //kuvan luonti koodi
@@ -91,18 +93,18 @@ function kuva(){
 */
 function kahviPS() {
     if(JsonObj.ps == true){
-        JsonObj.clicks =  JsonObj.clicks + 1;
+        JsonObj.clicks =  parseInt(JsonObj.clicks) + 1;
         tulosta(); 
     }
 }
 
 function aloita(){
     if(JsonObj.clicks > JsonObj.timerPS){
-        JsonObj.clicks = JsonObj.clicks - JsonObj.timerPS;
+        JsonObj.clicks =  parseInt(JsonObj.clicks) - parseInt(JsonObj.timerPS);
         JsonObj.ps = true;
         JsonObj.ps = true;
-        timerId = setInterval(JsonObj.kahviPS, 1000);
-        JsonObj.timerPS = JsonObj.timerPS + 50;
+        timerId = setInterval(kahviPS, 1000);
+        JsonObj.timerPS = parseInt(JsonObj.timerPS) + 50;
     }
     tulosta(); 
 
@@ -226,11 +228,23 @@ function get_stuff(){
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            JsonObj = JSON.parse(this.responseText);
+
+            var kahvit = document.querySelector('#clicks_output');
+            var kerroin = document.querySelector('#kerroin_output');
+            var kahviplus = document.querySelector('#kahviplus_output');
+            var kahvit_e = document.querySelector('#kahvi_output');
+            var timerPS = document.querySelector('#timerPS_output');
 
 
-            var myObj =  JSON.parse(this.responseText);
-            document.getElementById("").JSON = clicks;
-            tulosta();
+            kahvit.innerHTML = JsonObj.clicks;
+            kerroin.innerHTML = JsonObj.kerroin;
+            kahviplus.innerHTML = JsonObj.kahviplus;
+            kahvit_e.innerHTML = JsonObj.kahvi;
+            timerPS.innerHTML = JsonObj.timerPS;
+            
+            // document.getElementById("viestit").innerHTML = myObj;
+            // tulosta();
         }
     };
     xmlhttp.open("POST", "json_post_esim.php", true);

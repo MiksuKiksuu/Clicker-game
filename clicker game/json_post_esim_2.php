@@ -10,8 +10,10 @@ $obj = json_decode($_POST["x"], false);
 Ä*/
  
   /*" SELECT id FROM user_items, UPDATE user_items SET clicks = '$obj->clicks', kahvi ='$obj->kahvi')";*/
+  $id = (isset($_SESSION['id'])) ? $_SESSION['id'] : 0;
+ 
+  $sql = "UPDATE user_items SET clicks = '$obj->clicks', kahvi_2 = '$obj->kahvi_2', kahvi_3 = '$obj->kahvi_3', kahvi_4 = '$obj->kahvi_4', kerroin = '$obj->kerroin', kahviplus = '$obj->kahviplus', kahvi = '$obj->kahvi', timerPS = '$obj->timerPS', ps = '$obj->ps'  WHERE  id = $id;";
 
- $sql = " UPDATE user_items SET clicks = '$obj->clicks', kahvi_2 = '$obj->kahvi_2', kahvi_3 = '$obj->kahvi_3', kahvi_4 = '$obj->kahvi_4', kerroin = '$obj->kerroin', kahviplus = '$obj->kahviplus', kahvi = '$obj->kahvi', timerPS = '$obj->timerPS', ps = '$obj->ps'  WHERE id = id;";
 
 $result = $db->query($sql);
 if (!$result) {
